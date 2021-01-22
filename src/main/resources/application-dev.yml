@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://zhouym.icu:3306/spring_dev?useUnicode=true&characterEncoding=utf-8
+    username: spring_dev
+    password: spring
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
