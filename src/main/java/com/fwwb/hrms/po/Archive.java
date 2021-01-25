@@ -1,5 +1,6 @@
 package com.fwwb.hrms.po;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -54,6 +55,7 @@ public class Archive {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "company_uid")
     @Getter
+    @JsonBackReference
     private Company company;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -62,7 +64,7 @@ public class Archive {
     private Employee employee;
 
 
-    @OneToMany(mappedBy = "archive", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "archive")
     @Getter
     private List<Authorization> authorizationList;
 }

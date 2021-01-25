@@ -1,5 +1,6 @@
 package com.fwwb.hrms.po;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,12 +31,14 @@ public class Company {
     @Getter
     private String address;
 
-    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "company")
     @Getter
+    @JsonBackReference
     private List<Archive> archiveList;
 
     @OneToOne(mappedBy = "company")
     @Getter
+    @JsonBackReference
     private Hr hr;
 
 }

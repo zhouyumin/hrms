@@ -26,7 +26,7 @@ public class Account {
 
     @Column(name = "state")
     @Getter
-    private String state;
+    private String state = "未审核";
 
     @Column(name = "file")
     @Getter

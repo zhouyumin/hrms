@@ -1,5 +1,6 @@
 package com.fwwb.hrms.po;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -58,13 +59,16 @@ public class Employee implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "uid")
     @Getter
+    @JsonBackReference
     private Account account;
 
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employee")
     @Getter
+    @JsonBackReference
     private List<Archive> archiveList;
 
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employee")
     @Getter
+    @JsonBackReference
     private List<Authorization> authorizationList;
 }
