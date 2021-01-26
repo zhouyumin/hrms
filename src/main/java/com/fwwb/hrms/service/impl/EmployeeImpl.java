@@ -20,4 +20,9 @@ public class EmployeeImpl implements EmployeeService {
     public Employee getById(String uid){
         return employeeRespository.findById(uid).orElse(null);
     }
+
+    @Override
+    public void save(Employee employee) {
+        employeeRespository.save(employee);
+    }
 }

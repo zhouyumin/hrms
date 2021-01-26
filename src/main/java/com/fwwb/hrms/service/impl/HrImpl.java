@@ -21,4 +21,9 @@ public class HrImpl implements HrService {
     public Hr getById(String uid) {
         return hrRespository.findById(uid).orElse(null);
     }
+
+    @Override
+    public void save(Hr hr) {
+        hrRespository.save(hr);
+    }
 }

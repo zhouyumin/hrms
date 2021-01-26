@@ -2,9 +2,12 @@ package com.fwwb.hrms.service.impl;
 
 import com.fwwb.hrms.dao.AccountRespository;
 import com.fwwb.hrms.po.Account;
+import com.fwwb.hrms.po.Employee;
+import com.fwwb.hrms.po.Hr;
 import com.fwwb.hrms.service.AccountService;
 import com.fwwb.hrms.service.EmployeeService;
 import com.fwwb.hrms.service.HrService;
+import com.fwwb.hrms.utils.Result;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -22,21 +25,22 @@ public class AccountImpl implements AccountService {
     @Resource
     private EmployeeService employeeService;
     @Override
-    public Object checkAccount(String uid, String password) {
+    public Result checkAccount(String uid, String password) {
         Account account = accountRespository.findByUidAndPassword(uid, password);
         if(account!=null){
             Object res = null;
-            if(account.getState().equals("未审核")){
-                return "账号未审核";
-            }
-            else if(account.getIdentity().equals("HR")){
+            if(account.getIdentity().equals("HR")){
                 res = hrService.getById(account.getUid());
             }else if(account.getIdentity().equals("Employee")){
                 res = employeeService.getById(account.getUid());
             }
-            return res;
+            if(account.getState().equals("未审核")){
+                return Result.succ("账号未审核", res);
+            } else {
+                return Result.succ("账号已审核通过",res);
+            }
         }else {
-            return "用户名或密码错误";
+            return Result.fail("用户名或密码错误");
         }
     }
 
@@ -52,5 +56,16 @@ public class AccountImpl implements AccountService {
         account.setPassword(password);
         account.setIdentity(identify);
         accountRespository.save(account);
+        if(identify.equals("HR")){
+            Hr hr = new Hr();
+            hr.setUid(account.getUid());
+            hr.setAccount(account);
+            hrService.save(hr);
+        }else if(identify.equals("Employee")){
+            Employee employee = new Employee();
+            employee.setUid(account.getUid());
+            employee.setAccount(account);
+            employeeService.save(employee);
+        }
     }
 }
