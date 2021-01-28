@@ -1,5 +1,6 @@
 package com.fwwb.hrms.service;
 
+import com.fwwb.hrms.po.Archive;
 import com.fwwb.hrms.po.Employee;
 
 /**
@@ -9,4 +10,5 @@ import com.fwwb.hrms.po.Employee;
 public interface EmployeeService {
     Employee getById(String uid);
     void save(Employee employee);
+    Archive getByArchive(String uid);
 }
