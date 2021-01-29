@@ -24,6 +24,7 @@ public class AccountImpl implements AccountService {
     private HrService hrService;
     @Resource
     private EmployeeService employeeService;
+
     @Override
     public Result checkAccount(String uid, String password) {
         Account account = accountRespository.findByUidAndPassword(uid, password);
@@ -63,7 +64,7 @@ public class AccountImpl implements AccountService {
             hrService.save(hr);
         }else if(identify.equals("Employee")){
             Employee employee = new Employee();
-            employee.setUid(account.getUid());
+            employee.setUid(uid);
             employee.setAccount(account);
             employeeService.save(employee);
         }
