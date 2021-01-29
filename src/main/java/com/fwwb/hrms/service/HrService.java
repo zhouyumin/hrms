@@ -10,5 +10,4 @@ import com.fwwb.hrms.po.Hr;
 public interface HrService {
     Hr getById(String uid);
     void save(Hr hr);
-    Archive getByArchive(String uid);
 }

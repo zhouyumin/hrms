@@ -29,12 +29,12 @@ public class AccountController {
     @PostMapping(Constant.REGISTER)
     public Result register(@RequestParam("username")String username,
                            @RequestParam("password")String password,
-                           @RequestParam("identify")String identify){
-        if(identify.equals("HR")||identify.equals("Employee")){
+                           @RequestParam("identity")String identity){
+        if(identity.equals("HR")||identity.equals("Employee")){
             if(accountService.findAccountByUsername(username)){
                 return Result.fail("此账号已存在");
             }else{
-                accountService.registerAccount(username, password, identify);
+                accountService.registerAccount(username, password, identity);
                 return Result.succ("注册成功");
             }
         }
