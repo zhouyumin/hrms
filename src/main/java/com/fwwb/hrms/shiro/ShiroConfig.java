@@ -1,5 +1,6 @@
 package com.fwwb.hrms.shiro;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +15,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.fwwb.hrms.utils.Constant;
-
+/**
+ * @Author: 黄天赐
+ * @Date: Created in 10:41 2021/2/21
+ * 
+ */
 @Configuration
 public class ShiroConfig {
 	 @Bean

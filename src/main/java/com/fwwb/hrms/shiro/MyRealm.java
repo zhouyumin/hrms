@@ -1,5 +1,12 @@
 package com.fwwb.hrms.shiro;
 
+import java.util.logging.Logger;
+/**
+ * @Author: 黄天赐
+ * @Date: Created in 10:41 2021/2/21
+ * 
+ */
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

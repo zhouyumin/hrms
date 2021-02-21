@@ -2,6 +2,11 @@ package com.fwwb.hrms.shiro;
 
 
 import java.util.Date;
+/**
+ * @Author: 黄天赐
+ * @Date: Created in 10:41 2021/2/21
+ * 
+ */
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

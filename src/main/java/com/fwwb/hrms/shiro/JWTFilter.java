@@ -14,7 +14,11 @@ import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 
 
 import com.fwwb.hrms.utils.Constant;
-
+/**
+ * @Author: 黄天赐
+ * @Date: Created in 10:41 2021/2/21
+ * 
+ */
 public class JWTFilter extends BasicHttpAuthenticationFilter{
 	
 @Override
