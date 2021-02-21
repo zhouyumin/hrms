@@ -17,8 +17,6 @@ import javax.annotation.Resource;
 public class EmployeeImpl implements EmployeeService {
     @Resource
     EmployeeRespository employeeRespository;
-    @Resource
-    ArchiveRespository archiveRespository;
     @Override
     public Employee getById(String uid){
         return employeeRespository.findById(uid).orElse(null);
@@ -28,10 +26,4 @@ public class EmployeeImpl implements EmployeeService {
     public void save(Employee employee) {
         employeeRespository.save(employee);
     }
-
-	@Override
-	public Archive getByArchive(String uid) {
-		// TODO 自动生成的方法存根
-		return archiveRespository.findById(uid).orElse(null);
-	}
 }

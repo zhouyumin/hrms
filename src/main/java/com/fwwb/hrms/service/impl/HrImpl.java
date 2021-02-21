@@ -17,8 +17,6 @@ import javax.annotation.Resource;
 public class HrImpl implements HrService {
     @Resource
     HrRespository hrRespository;
-    @Resource
-    ArchiveRespository archiveRespository;
     @Override
     public Hr getById(String uid) {
         return hrRespository.findById(uid).orElse(null);
@@ -28,10 +26,4 @@ public class HrImpl implements HrService {
     public void save(Hr hr) {
         hrRespository.save(hr);
     }
-
-	@Override
-	public Archive getByArchive(String uid) {
-		// TODO 自动生成的方法存根
-		return archiveRespository.findById(uid).orElse(null);
-	}
 }
