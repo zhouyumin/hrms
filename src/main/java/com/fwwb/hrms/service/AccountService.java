@@ -1,6 +1,7 @@
 package com.fwwb.hrms.service;
 
 import com.fwwb.hrms.po.Account;
+import com.fwwb.hrms.po.Employee;
 import com.fwwb.hrms.utils.Result;
 
 /**
@@ -9,6 +10,7 @@ import com.fwwb.hrms.utils.Result;
  */
 public interface AccountService {
     Result checkAccount(String uid, String password);
+    Account getByUserName(String uid);
     boolean findAccountByUsername(String uid);
     void registerAccount(String uid, String password, String identify);
 }

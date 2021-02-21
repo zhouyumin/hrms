@@ -7,6 +7,7 @@ import com.fwwb.hrms.po.Hr;
 import com.fwwb.hrms.service.AccountService;
 import com.fwwb.hrms.service.EmployeeService;
 import com.fwwb.hrms.service.HrService;
+import com.fwwb.hrms.shiro.JWTUtil;
 import com.fwwb.hrms.utils.Result;
 import org.springframework.stereotype.Service;
 
@@ -35,9 +36,9 @@ public class AccountImpl implements AccountService {
                 res = employeeService.getById(account.getUid());
             }
             if(account.getState().equals("未审核")){
-                return Result.succ("账号未审核", res);
+                return Result.succ("账号未审核", JWTUtil.sign(uid, account.getPassword()));//成功登陆返回一个Token令牌
             } else {
-                return Result.succ("账号已审核通过",res);
+                return Result.succ("账号已审核通过",JWTUtil.sign(uid, account.getPassword()));//成功登陆返回一个Token令牌
             }
         }else {
             return Result.fail("用户名或密码错误");
@@ -68,4 +69,11 @@ public class AccountImpl implements AccountService {
             employeeService.save(employee);
         }
     }
+    @Override
+	public Account getByUserName(String uid) {
+		// TODO 自动生成的方法存根
+		if(!findAccountByUsername(uid))
+			return null;
+		return accountRespository.findById(uid).get();
+	}
 }
