@@ -11,32 +11,27 @@ import javax.persistence.*;
  */
 @Entity
 @Setter
+@Getter
 public class Account {
     @Id
     @Column(name = "uid")
-    @Getter
     private String uid;
 
     @Column(name = "password")
-    @Getter
     private String password;
 
     @Column(name = "identity")
-    @Getter private String identity;
+    private String identity;
 
     @Column(name = "state")
-    @Getter
     private String state = "未审核";
 
     @Column(name = "file")
-    @Getter
     private String file;
 
     @OneToOne(mappedBy = "account")
-    @Getter
     private Employee employee;
 
     @OneToOne(mappedBy = "account")
-    @Getter
     private Hr hr;
 }

@@ -12,27 +12,23 @@ import java.sql.Date;
 */
 @Entity
 @Setter
+@Getter
 public class Authorization {
     @Id
     @Column(name = "uid")
-    @Getter
     private int uid;
 
     @Column(name = "start_date")
-    @Getter
     private Date startDate;
 
     @Column(name = "end_date")
-    @Getter
     private Date endDate;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "archive_uid")
-    @Getter
     private Archive archive;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_uid")
-    @Getter
     private Employee employee;
 }

@@ -14,57 +14,46 @@ import java.util.List;
  */
 @Entity
 @Setter
+@Getter
 public class Archive {
     @Id
     @Column(name = "uid")
-    @Getter
     private long uid;
 
     @Column(name = "general_comment")
-    @Getter
     private String generalComment;
 
     @Column(name = "bonus_penalty")
-    @Getter
     private String bonusPenalty;
 
     @Column(name = "team_ability")
-    @Getter
     private Integer teamAbility;
 
     @Column(name = "performance")
-    @Getter
     private Integer performance;
 
     @Column(name = "attitude")
-    @Getter
     private Integer attitude;
 
     @Column(name = "title")
-    @Getter
     private String title;
 
     @Column(name = "hire_date")
-    @Getter
     private Date hireDate;
 
     @Column(name = "departure_date")
-    @Getter
     private Date departureDate;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "company_uid")
-    @Getter
     @JsonBackReference
     private Company company;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_uid")
-    @Getter
     private Employee employee;
 
 
     @OneToMany(mappedBy = "archive")
-    @Getter
     private List<Authorization> authorizationList;
 }

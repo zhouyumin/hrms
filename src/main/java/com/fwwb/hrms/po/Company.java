@@ -13,31 +13,26 @@ import java.util.List;
  */
 @Entity
 @Setter
+@Getter
 public class Company {
     @Id
     @Column(name = "uid")
-    @Getter
     private String uid;
 
     @Column(name = "name")
-    @Getter
     private String name;
 
     @Column(name = "tel")
-    @Getter
     private String tel;
 
     @Column(name = "address")
-    @Getter
     private String address;
 
     @OneToMany(mappedBy = "company")
-    @Getter
     @JsonBackReference
     private List<Archive> archiveList;
 
     @OneToOne(mappedBy = "company")
-    @Getter
     @JsonBackReference
     private Hr hr;
 

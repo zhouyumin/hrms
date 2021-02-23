@@ -13,36 +13,30 @@ import java.io.Serializable;
  */
 @Entity
 @Setter
+@Getter
 public class Hr implements Serializable {
     @Id
-    @Getter
     private String uid;
 
     @Column(name = "name")
-    @Getter
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "company_uid")
-    @Getter
     private Company company;
 
     @Column(name = "tel")
-    @Getter
     private String tel;
 
     @Column(name = "sex")
-    @Getter
     private String sex;
 
     @Column(name = "id_number")
-    @Getter
     private Long idNumber;
 
     @MapsId
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "uid")
-    @Getter
     @JsonBackReference
     private Account account;
 }
