@@ -1,4 +1,4 @@
-package com.fwwb.hrms.utils;
+package com.fwwb.hrms.shiro.jwt;
 
 
 import java.util.Date;
@@ -8,16 +8,24 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * @Author: 黄天赐
  * @Date: Created in 10:41 2021/2/21
  */
+@Component
 public class JwtUtil {
     /**
-     * JWT验证过期时间 EXPIRE_TIME 24小时
+     * JWT验证过期时间 从配置文件中获取
      */
-    private static final long EXPIRE_TIME = 24 * 60 * 60 * 1000;
+    private static long expire_time;
+
+    @Value("${shiro-redis.cache-manager.expire}")
+    public void setExpire_time(long time) {
+        expire_time = time * 1000;
+    }
 
     /**
      * 校验token是否正确
@@ -61,11 +69,12 @@ public class JwtUtil {
      *
      * @param username 用户名
      * @param secret   用户的密码
-     * @return 加密的token
+     * @return 加密的toke
      */
-    public static String creatToken(String username, String secret) {
+    public static String createToken(String username, String secret) {
         try {
-            Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
+            System.out.println(expire_time);
+            Date date = new Date(System.currentTimeMillis() + expire_time);
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withClaim("username", username)

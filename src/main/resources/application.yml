@@ -3,3 +3,10 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+shiro-redis:
+  enabled: true
+  redis-manager:
+    host: zhouym.icu:6379
+    password: odyyds
+  cache-manager:
+    expire: 86400 # 24小时

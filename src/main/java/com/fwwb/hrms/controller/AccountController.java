@@ -4,16 +4,20 @@ import com.fwwb.hrms.po.Account;
 import com.fwwb.hrms.service.AccountService;
 import com.fwwb.hrms.service.EmployeeService;
 import com.fwwb.hrms.service.HrService;
-import com.fwwb.hrms.utils.JwtUtil;
+import com.fwwb.hrms.shiro.jwt.JwtToken;
+import com.fwwb.hrms.shiro.jwt.JwtUtil;
 import com.fwwb.hrms.utils.Constant;
 import com.fwwb.hrms.utils.Result;
 import io.swagger.annotations.ApiOperation;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -33,27 +37,32 @@ public class AccountController {
     @PostMapping(Constant.LOGIN)
     public Result login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
+                        HttpServletRequest request,
                         HttpServletResponse response) {
-        Account account = accountService.checkAccount(username, password);
-        if (account != null) {
-            Object res = null;
-            String jwt = JwtUtil.creatToken(account.getUid(), account.getPassword());
-            response.setHeader("Authorization", jwt);   //成功登陆返回一个Token令牌
-            response.setHeader("Access-Control-Expose-Headers", "Authorization");
-            if (account.getIdentity().equals("HR")) {
-                res = hrService.getById(account.getUid());
-            } else if (account.getIdentity().equals("Employee")) {
-                res = employeeService.getById(account.getUid());
-            }
-            if (account.getState().equals("未审核")) {
-                return Result.succ("账号未审核", res);
-            } else {
-                return Result.succ("账号已审核通过", res);
-            }
-        } else {
-            return Result.fail("用户名或密码错误");
+        String token = request.getHeader("Authorization");
+        response.setHeader("Access-Control-Expose-Headers", "Authorization");
+        Subject subject = SecurityUtils.getSubject();
+        try {
+            subject.login(new JwtToken(token));
+        } catch (Exception e) {
+            token = JwtUtil.createToken(username, password);
+            subject.login(new JwtToken(token));
         }
+        return Result.succ("登入成功", token);
     }
+
+    @ApiOperation(value = "退出登录",notes = "退出登入")
+    @PostMapping(Constant.LOGOUT)
+    public Result logout(HttpServletRequest request, HttpServletResponse response){
+        Subject subject = SecurityUtils.getSubject();
+        try {
+            subject.logout();
+        }catch (Exception e){
+            return Result.fail("退出失败");
+        }
+        return Result.succ("成功退出");
+    }
+
 
     @ApiOperation(value = "注册", notes = "提交注册表单")
     @PostMapping(Constant.REGISTER)
@@ -70,7 +79,6 @@ public class AccountController {
         } else {
             return Result.fail("错误");
         }
-
     }
 
 }

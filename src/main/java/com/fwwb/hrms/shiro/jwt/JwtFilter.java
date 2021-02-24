@@ -1,4 +1,4 @@
-package com.fwwb.hrms.shiro;
+package com.fwwb.hrms.shiro.jwt;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -6,12 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
+import org.springframework.stereotype.Component;
 
 
 /**
  * @Author: 黄天赐
  * @Date: Created in 10:41 2021/2/21
  */
+@Component
 public class JwtFilter extends BasicHttpAuthenticationFilter {
 
     // 验证是否携带token

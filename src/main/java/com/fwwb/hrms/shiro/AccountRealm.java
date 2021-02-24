@@ -1,6 +1,7 @@
 package com.fwwb.hrms.shiro;
 
-import com.fwwb.hrms.utils.JwtUtil;
+import com.fwwb.hrms.shiro.jwt.JwtToken;
+import com.fwwb.hrms.shiro.jwt.JwtUtil;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -43,8 +44,7 @@ public class AccountRealm extends AuthorizingRealm {
         if (account == null || !JwtUtil.verify(token, uid, account.getPassword())) {
             throw new UnauthenticatedException();
         }
-
-        return new SimpleAuthenticationInfo(token, token, "account_realm");
+        return new SimpleAuthenticationInfo(token, token, getName());
     }
 
     // 授权

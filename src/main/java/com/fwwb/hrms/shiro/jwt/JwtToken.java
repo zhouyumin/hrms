@@ -1,4 +1,4 @@
-package com.fwwb.hrms.shiro;
+package com.fwwb.hrms.shiro.jwt;
 
 import lombok.AllArgsConstructor;
 import org.apache.shiro.authc.AuthenticationToken;
