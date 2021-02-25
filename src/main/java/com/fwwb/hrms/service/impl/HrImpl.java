@@ -1,8 +1,6 @@
 package com.fwwb.hrms.service.impl;
 
-import com.fwwb.hrms.dao.ArchiveRespository;
 import com.fwwb.hrms.dao.HrRespository;
-import com.fwwb.hrms.po.Archive;
 import com.fwwb.hrms.po.Hr;
 import com.fwwb.hrms.service.HrService;
 import org.springframework.stereotype.Service;

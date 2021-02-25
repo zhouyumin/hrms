@@ -1,6 +1,5 @@
 package com.fwwb.hrms.service;
 
-import com.fwwb.hrms.po.Archive;
 import com.fwwb.hrms.po.Hr;
 
 /**

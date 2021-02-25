@@ -3,6 +3,8 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+# shiro-redis
 shiro-redis:
   enabled: true
   redis-manager:
@@ -10,3 +12,14 @@ shiro-redis:
     password: odyyds
   cache-manager:
     expire: 86400 # 24小时
+
+# minio配置
+minio:
+  endpoint: http://zhouym.icu:9000 #http协议头必须加上不然找不到 hostname
+  accessKey: admin
+  secretKey: password
+  bucket-name: img #存储桶的名字
+
+# 水印内容
+water-mark:
+  content: 图片仅供小微企业跨组织人才管理系统认证使用

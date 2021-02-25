@@ -1,11 +1,10 @@
 package com.fwwb.hrms.controller;
 
-import com.fwwb.hrms.po.Account;
 import com.fwwb.hrms.service.AccountService;
 import com.fwwb.hrms.service.EmployeeService;
 import com.fwwb.hrms.service.HrService;
 import com.fwwb.hrms.shiro.jwt.JwtToken;
-import com.fwwb.hrms.shiro.jwt.JwtUtil;
+import com.fwwb.hrms.utils.JwtUtil;
 import com.fwwb.hrms.utils.Constant;
 import com.fwwb.hrms.utils.Result;
 import io.swagger.annotations.ApiOperation;

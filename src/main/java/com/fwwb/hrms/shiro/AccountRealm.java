@@ -1,7 +1,7 @@
 package com.fwwb.hrms.shiro;
 
 import com.fwwb.hrms.shiro.jwt.JwtToken;
-import com.fwwb.hrms.shiro.jwt.JwtUtil;
+import com.fwwb.hrms.utils.JwtUtil;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
