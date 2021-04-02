@@ -9,4 +9,5 @@ import com.fwwb.hrms.po.Employee;
 public interface EmployeeService {
     Employee getById(String uid);
     void save(Employee employee);
+    Employee getByIdNumber(String idNumber);
 }

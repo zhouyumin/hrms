@@ -1,5 +1,6 @@
 package com.fwwb.hrms.service;
 
+import com.fwwb.hrms.dto.UserState;
 import com.fwwb.hrms.po.Account;
 
 /**
@@ -11,4 +12,5 @@ public interface AccountService {
     Account getByUserName(String uid);
     boolean findAccountByUsername(String uid);
     void registerAccount(String uid, String password, String identify);
+    UserState getIdentity(String uid);
 }

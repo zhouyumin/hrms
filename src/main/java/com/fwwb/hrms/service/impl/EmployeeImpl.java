@@ -1,6 +1,6 @@
 package com.fwwb.hrms.service.impl;
 
-import com.fwwb.hrms.dao.EmployeeRespository;
+import com.fwwb.hrms.dao.EmployeeRepository;
 import com.fwwb.hrms.po.Employee;
 import com.fwwb.hrms.service.EmployeeService;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 @Service
 public class EmployeeImpl implements EmployeeService {
     @Resource
-    EmployeeRespository employeeRespository;
+    EmployeeRepository employeeRespository;
     @Override
     public Employee getById(String uid){
         return employeeRespository.findById(uid).orElse(null);
@@ -23,5 +23,10 @@ public class EmployeeImpl implements EmployeeService {
     @Override
     public void save(Employee employee) {
         employeeRespository.save(employee);
+    }
+
+    @Override
+    public Employee getByIdNumber(String idNumber) {
+        return employeeRespository.getByIdNumber(idNumber);
     }
 }

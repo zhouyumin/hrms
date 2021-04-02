@@ -1,8 +1,7 @@
 package com.fwwb.hrms.po;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,11 +11,9 @@ import java.util.List;
  * @Date: Created in 16:22 2021/1/22
  */
 @Entity
-@Setter
-@Getter
+@Data
 public class Company {
     @Id
-    @Column(name = "uid")
     private String uid;
 
     @Column(name = "name")
@@ -28,12 +25,16 @@ public class Company {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "business_number")
+    private String business_number;
+
     @OneToMany(mappedBy = "company")
     @JsonBackReference
     private List<Archive> archiveList;
 
-    @OneToOne(mappedBy = "company")
+    @MapsId
+    @OneToOne(cascade = CascadeType.ALL)
     @JsonBackReference
-    private Hr hr;
+    private Account account;
 
 }

@@ -1,8 +1,7 @@
 package com.fwwb.hrms.po;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,8 +12,7 @@ import java.util.List;
  * @Date: Created in 16:22 2021/1/22
  */
 @Entity
-@Setter
-@Getter
+@Data
 public class Employee implements Serializable {
     @Id
     private String uid;
@@ -23,7 +21,7 @@ public class Employee implements Serializable {
     private String name;
 
     @Column(name = "id_number")
-    private Long idNumber;
+    private String idNumber;
 
     @Column(name = "sex")
     private String sex;
@@ -48,11 +46,10 @@ public class Employee implements Serializable {
 
     @MapsId
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "uid")
     @JsonBackReference
     private Account account;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<Archive> archiveList;
 

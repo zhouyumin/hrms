@@ -1,12 +1,13 @@
 package com.fwwb.hrms.service.impl;
 
-import com.fwwb.hrms.dao.AccountRespository;
+import com.fwwb.hrms.dao.AccountRepository;
+import com.fwwb.hrms.dto.UserState;
 import com.fwwb.hrms.po.Account;
+import com.fwwb.hrms.po.Company;
 import com.fwwb.hrms.po.Employee;
-import com.fwwb.hrms.po.Hr;
 import com.fwwb.hrms.service.AccountService;
 import com.fwwb.hrms.service.EmployeeService;
-import com.fwwb.hrms.service.HrService;
+import com.fwwb.hrms.service.CompanyService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,9 +20,9 @@ import java.util.Optional;
 @Service
 public class AccountImpl implements AccountService {
     @Resource
-    private AccountRespository accountRespository;
+    private AccountRepository accountRespository;
     @Resource
-    private HrService hrService;
+    private CompanyService companyService;
     @Resource
     private EmployeeService employeeService;
 
@@ -43,16 +44,21 @@ public class AccountImpl implements AccountService {
         account.setIdentity(identify);
         accountRespository.save(account);
         if (identify.equals("HR")) {
-            Hr hr = new Hr();
-            hr.setUid(account.getUid());
-            hr.setAccount(account);
-            hrService.save(hr);
+            Company company = new Company();
+            company.setUid(account.getUid());
+            company.setAccount(account);
+            companyService.save(company);
         } else if (identify.equals("Employee")) {
             Employee employee = new Employee();
             employee.setUid(uid);
             employee.setAccount(account);
             employeeService.save(employee);
         }
+    }
+
+    @Override
+    public UserState getIdentity(String uid) {
+        return accountRespository.getIdentity(uid);
     }
 
     @Override

@@ -1,11 +1,11 @@
 package com.fwwb.hrms.po;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,12 +13,12 @@ import java.util.List;
  * @Date: Created in 16:22 2021/1/22
  */
 @Entity
-@Setter
-@Getter
+@Data
 public class Archive {
     @Id
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name = "uid")
-    private long uid;
+    private String uid;
 
     @Column(name = "general_comment")
     private String generalComment;
@@ -38,22 +38,23 @@ public class Archive {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "department")
+    private String department;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @Column(name = "hire_date")
     private Date hireDate;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @Column(name = "departure_date")
     private Date departureDate;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "company_uid")
-    @JsonBackReference
     private Company company;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
     @JoinColumn(name = "employee_uid")
     private Employee employee;
-
-
-    @OneToMany(mappedBy = "archive")
-    private List<Authorization> authorizationList;
 }

@@ -73,7 +73,6 @@ public class JwtUtil {
      */
     public static String createToken(String username, String secret) {
         try {
-            System.out.println(expire_time);
             Date date = new Date(System.currentTimeMillis() + expire_time);
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()

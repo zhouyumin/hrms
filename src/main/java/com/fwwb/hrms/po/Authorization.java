@@ -1,22 +1,26 @@
 package com.fwwb.hrms.po;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
 * @Author: 周余民
 * @Date: Created in 16:22 2021/1/22
 */
 @Entity
-@Setter
-@Getter
-public class Authorization {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Authorization{
     @Id
     @Column(name = "uid")
-    private int uid;
+    private String uid;
 
     @Column(name = "start_date")
     private Date startDate;
@@ -24,11 +28,8 @@ public class Authorization {
     @Column(name = "end_date")
     private Date endDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "archive_uid")
-    private Archive archive;
-
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "employee_uid")
+    @JsonBackReference
     private Employee employee;
 }

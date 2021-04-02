@@ -1,7 +1,6 @@
 package com.fwwb.hrms.po;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 
@@ -10,8 +9,7 @@ import javax.persistence.*;
  * @Date: Created in 16:22 2021/1/22
  */
 @Entity
-@Setter
-@Getter
+@Data
 public class Account {
     @Id
     @Column(name = "uid")
@@ -33,5 +31,5 @@ public class Account {
     private Employee employee;
 
     @OneToOne(mappedBy = "account")
-    private Hr hr;
+    private Company company;
 }

@@ -114,6 +114,5 @@ public class ShiroConfig {
         // defaultAdvisorAutoProxyCreator.setUsePrefix(true);
         return defaultAdvisorAutoProxyCreator;
     }
-
 }
 
