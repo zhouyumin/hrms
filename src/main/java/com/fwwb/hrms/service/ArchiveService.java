@@ -15,4 +15,5 @@ public interface ArchiveService {
     List<Archive> getByEmployee(Employee employee);
     List<Archive> getByCompany(Company company);
     void saveArchive(Archive archive);
+    Archive findByEmployeeAndCompany(Employee employee, Company company);
 }

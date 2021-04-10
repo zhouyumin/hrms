@@ -1,12 +1,10 @@
 package com.fwwb.hrms.po;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @Author: 周余民
@@ -20,11 +18,17 @@ public class Archive {
     @Column(name = "uid")
     private String uid;
 
-    @Column(name = "general_comment")
-    private String generalComment;
-
     @Column(name = "bonus_penalty")
     private String bonusPenalty;
+
+    @Column(name = "attendance")
+    private String attendance;
+
+    @Column(name = "comment")
+    private String comment;
+
+    @Column(name = "rate")
+    private Integer rate;
 
     @Column(name = "team_ability")
     private Integer teamAbility;
@@ -54,7 +58,6 @@ public class Archive {
     private Company company;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference
     @JoinColumn(name = "employee_uid")
     private Employee employee;
 }

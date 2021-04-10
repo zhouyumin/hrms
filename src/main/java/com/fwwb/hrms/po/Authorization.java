@@ -30,6 +30,5 @@ public class Authorization{
 
     @ManyToOne
     @JoinColumn(name = "employee_uid")
-    @JsonBackReference
     private Employee employee;
 }

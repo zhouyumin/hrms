@@ -33,4 +33,9 @@ public class ArchiveImpl implements ArchiveService {
     public void saveArchive(Archive archive) {
         archiveRespository.save(archive);
     }
+
+    @Override
+    public Archive findByEmployeeAndCompany(Employee employee, Company company) {
+        return archiveRespository.findByEmployeeAndCompany(employee, company);
+    }
 }

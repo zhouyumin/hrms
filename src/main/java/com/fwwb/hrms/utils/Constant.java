@@ -14,7 +14,9 @@ public class Constant {
     public static final String AUTHOR_COMPANY="/author_company";
     public static final String ADD_ARCHIVE="/add_archive";
     public static final String GET_ARCHIVE="/get_archive";
+    public static final String UPDATE_ARCHIVE="/update_archive";
     public static final String GET_COMPANY_ARCHIVE="/get_company_archive";
+    public static final String FETCH_ARCHIVE="/fetch_archive";
     public static final String GET_AUTHORIZATION="/get_authorization";
     public static final String ADD_AUTHORIZATION="/add_authorization";
     public static final String UPDATE_AUTHORIZATION="/update_authorization";

@@ -16,4 +16,5 @@ import java.util.List;
 public interface ArchiveRepository extends JpaRepository<Archive, String>{
     List<Archive> getAllByEmployee(Employee employee);
     List<Archive> getAllByCompany(Company company);
+    Archive findByEmployeeAndCompany(Employee employee, Company company);
 }

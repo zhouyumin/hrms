@@ -55,7 +55,7 @@ public class AuthorizationController {
         String token = request.getHeader("Authorization");
         String username = JwtUtil.getUsername(token);
         Employee employee = employeeService.getById(username);
-        List<Authorization> res = authorizationService.getAuthorization(employee);
+        List<AuthorizationDto> res = authorizationService.getAuthorization(employee);
         return Result.succ("获取成功", res);
     }
 

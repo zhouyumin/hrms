@@ -1,6 +1,8 @@
 package com.fwwb.hrms.service.impl;
 
 import com.fwwb.hrms.dao.AuthorizationRepository;
+import com.fwwb.hrms.dto.AuthorizationDto;
+import com.fwwb.hrms.po.Archive;
 import com.fwwb.hrms.po.Authorization;
 import com.fwwb.hrms.po.Employee;
 import com.fwwb.hrms.service.AuthorizationService;
@@ -24,8 +26,13 @@ public class AuthorizationImpl implements AuthorizationService {
     }
 
     @Override
-    public List<Authorization> getAuthorization(Employee employee) {
+    public List<AuthorizationDto> getAuthorization(Employee employee) {
         return authorizationRepository.findAllByEmployee(employee);
+    }
+
+    @Override
+    public Authorization fetchByUid(String uid) {
+        return authorizationRepository.findById(uid).orElse(null);
     }
 
     @Override
