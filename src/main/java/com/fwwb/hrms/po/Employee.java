@@ -41,9 +41,6 @@ public class Employee implements Serializable {
     @Column(name = "education")
     private String education;
 
-    @Column(name = "job_state")
-    private String jobState;
-
     @MapsId
     @OneToOne(cascade = CascadeType.ALL)
     @JsonBackReference

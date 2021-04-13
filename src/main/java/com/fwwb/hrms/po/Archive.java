@@ -16,7 +16,7 @@ public class Archive {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name = "uid")
-    private String uid;
+    private Integer uid;
 
     @Column(name = "bonus_penalty")
     private String bonusPenalty;

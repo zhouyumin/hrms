@@ -10,6 +10,7 @@ import com.fwwb.hrms.utils.JwtUtil;
 import com.fwwb.hrms.utils.Result;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +31,7 @@ public class EmployeeController {
     EmployeeService employeeService;
     @Resource
     AccountService accountService;
-    @RequiresAuthentication
+    @RequiresRoles("Employee")
     @PostMapping(Constant.AUTHOR_EMPLOYEE)
     @ApiOperation(value = "认证", notes = "个人提交认证")
     public Result author_employee(@RequestBody EmployeeDto employeeDto, HttpServletRequest request){

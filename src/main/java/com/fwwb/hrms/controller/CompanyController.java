@@ -10,6 +10,7 @@ import com.fwwb.hrms.utils.JwtUtil;
 import com.fwwb.hrms.utils.Result;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +30,7 @@ public class CompanyController {
     CompanyService companyService;
     @Resource
     AccountService accountService;
-    @RequiresAuthentication
+    @RequiresRoles("Company")
     @ApiOperation(value = "认证", notes = "公司提交认证")
     @PostMapping(Constant.AUTHOR_COMPANY)
     public Result author_company(@RequestBody CompanyDto companyDto, HttpServletRequest request){

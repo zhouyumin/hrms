@@ -22,6 +22,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateArchiveDto {
+    private Integer uid;
+
     private String name;
 
     private String idNumber;

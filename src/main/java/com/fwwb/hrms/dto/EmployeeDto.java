@@ -15,7 +15,9 @@ import lombok.NoArgsConstructor;
 public class EmployeeDto {
     private String name;
     private String sex;
-    private String id_number;
+    private String idNumber;
+    private String address;
+    private String nation;
     private String tel;
     private String education;
 }
