@@ -22,7 +22,7 @@ public class Archive {
     private String bonusPenalty;
 
     @Column(name = "attendance")
-    private String attendance;
+    private Integer attendance;
 
     @Column(name = "comment")
     private String comment;

@@ -30,7 +30,7 @@ public class UpdateArchiveDto {
 
     private String bonusPenalty;
 
-    private String attendance;
+    private Integer attendance;
 
     private String comment;
 
