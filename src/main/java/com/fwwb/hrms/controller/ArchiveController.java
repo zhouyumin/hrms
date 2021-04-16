@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -108,6 +110,19 @@ public class ArchiveController {
     @RequiresRoles("Company")
     public Result fetchArchive(@RequestParam("authorization")String authorization){
         Authorization res = authorizationService.fetchByUid(authorization);
-        return Result.succ("获取成功", res);
+        if(res == null){
+            return Result.fail("授权码无效");
+        }
+        Date now = new Date();
+        Date endDate = res.getEndDate();
+        Date startDate = res.getStartDate();
+        if(now.before(startDate)&&now.after(endDate)){
+            return Result.fail("授权码不在有效期");
+        }
+        List<Archive> archives= archiveService.getByEmployee(res.getEmployee());
+        List<Object> resDate = new ArrayList<>();
+        resDate.add(res);
+        resDate.add(archives);
+        return Result.succ("获取成功", resDate);
     }
 }
