@@ -14,9 +14,8 @@ import java.util.Date;
 @Data
 public class Archive {
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name = "uid")
-    private Integer uid;
+    private String uid;
 
     @Column(name = "bonus_penalty")
     private String bonusPenalty;

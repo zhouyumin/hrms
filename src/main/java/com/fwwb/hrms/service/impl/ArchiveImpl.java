@@ -35,7 +35,7 @@ public class ArchiveImpl implements ArchiveService {
     }
 
     @Override
-    public Archive findByIdAndCompany(Integer uid, Company company) {
+    public Archive findByIdAndCompany(String uid, Company company) {
         return archiveRespository.findByUidAndCompany(uid, company);
     }
 }

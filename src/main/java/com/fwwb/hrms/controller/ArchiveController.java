@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Author: 周余民
@@ -61,8 +62,10 @@ public class ArchiveController {
         String username = JwtUtil.getUsername(token);
         Company company = companyService.getById(username);
         archive.setCompany(company);
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        archive.setUid(uuid);
         archiveService.saveArchive(archive);
-        return Result.succ("添加成功");
+        return Result.succ("添加成功",archive);
     }
 
     @ApiOperation(value = "更新档案", notes = "提交档案表单")
